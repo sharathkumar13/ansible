@@ -1,0 +1,8 @@
+- hosts: ec2-private
+  strategy: debug
+  gather_facts: yes
+  vars:
+    pkg_name: not_exist
+  tasks:
+    - name: install package
+      yum: name={{ pkg_name }}

@@ -1,0 +1,20 @@
+---
+- name: starting ec2 instances
+  hosts: 8k-private-instances
+  gather_facts: false
+  connection: local
+  pre_tasks:
+    - include_vars: group_vars/aws.yml
+  tasks:
+    - name: staring ec2 instances
+      ec2:
+        aws_access_key: '{{ aws_key }}'
+        aws_secret_key: '{{ secret_key }}'
+        key_name: FirstInstance
+        instance_type: t2.micro
+        image: ami-f2232c8b
+        private_ip: 172.16.1.109
+        region: us-west-2
+        vpc_subnet_id: subnet-52a13b1b
+        wait: True
+

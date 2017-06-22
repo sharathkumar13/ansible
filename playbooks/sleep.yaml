@@ -1,0 +1,11 @@
+---
+
+- hosts: 8k-1
+#  remote_user: ubuntu
+
+  tasks:
+
+  - name: simulate long running op (15 sec), wait for up to 45 sec, poll every 5 sec
+    command: /bin/touch check.txt
+    async: 45
+    poll: 0

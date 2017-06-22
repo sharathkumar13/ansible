@@ -1,0 +1,18 @@
+---
+- name: starting ec2 instances
+  hosts: 8k-private-instances
+  gather_facts: false
+  connection: local
+  pre_tasks:
+    - include_vars: ../group_vars/aws.yml
+  tasks:
+    - ec2_remote_facts:
+        region: us-west-2
+#      filters:
+#       instance-state-name: running
+#       "tag:Name": Example
+        filters:
+          instance-id: i-071980a3b1a0a9963
+          instance-state-name: running
+#          "tag:Name": 8k
+#          region: us-west-2
